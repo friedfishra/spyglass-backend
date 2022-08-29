@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +19,7 @@ import com.skillstorm.spyglass.services.GoalService;
 
 @RestController
 @RequestMapping("/goals")
+@CrossOrigin
 public class GoalController {
 	@Autowired
 	private GoalService service;
@@ -26,8 +30,8 @@ public class GoalController {
 		return goals;
 	}
 	
-	@GetMapping
-	public Optional<Goal> getById(Integer id){
+	@GetMapping("/{id}")
+	public Optional<Goal> getById(@PathVariable Integer id){
 		return service.findById(id);
 	}
 	
@@ -36,9 +40,13 @@ public class GoalController {
 		return service.save(goal);
 	}
 	
-	@PutMapping
+	@PutMapping("/{id}")
 	public Goal updateGoal(@RequestBody Goal goal) {
 		return service.update(goal);
 	}
 	
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
+	}
 }
