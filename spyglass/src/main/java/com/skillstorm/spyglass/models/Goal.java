@@ -2,25 +2,38 @@ package com.skillstorm.spyglass.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table
 public class Goal {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Integer id;
 	
+	@Column
 	private String name;
 	
+	@Column
 	private String description;
 	
+	@Column(name = "image_path")
 	private String imagePath;
 	
+	@Column(name = "target_date")
 	private LocalDate targetDate;
 	
-	private Integer targerAmount;
+	@Column(name = "targetAmount")
+	private Integer targetAmount;
 	
+	@Column(name = "current_amount")
 	private Integer currentAmount;
 
 	public Integer getId() {
@@ -63,12 +76,12 @@ public class Goal {
 		this.targetDate = targetDate;
 	}
 
-	public Integer getTargerAmount() {
-		return targerAmount;
+	public Integer getTargetAmount() {
+		return targetAmount;
 	}
 
-	public void setTargerAmount(Integer targerAmount) {
-		this.targerAmount = targerAmount;
+	public void setTargetAmount(Integer targetAmount) {
+		this.targetAmount = targetAmount;
 	}
 
 	public Integer getCurrentAmount() {
@@ -83,21 +96,35 @@ public class Goal {
 		super();
 	}
 
-	public Goal(String name, String description, String imagePath, LocalDate targetDate, Integer targerAmount,
+	public Goal(String name, String description, String imagePath, LocalDate targetDate, Integer targetAmount,
 			Integer currentAmount) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.imagePath = imagePath;
 		this.targetDate = targetDate;
-		this.targerAmount = targerAmount;
+		this.targetAmount = targetAmount;
+		this.currentAmount = currentAmount;
+	}
+	
+	
+
+	public Goal(Integer id, String name, String description, String imagePath, LocalDate targetDate,
+			Integer targetAmount, Integer currentAmount) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.imagePath = imagePath;
+		this.targetDate = targetDate;
+		this.targetAmount = targetAmount;
 		this.currentAmount = currentAmount;
 	}
 
 	@Override
 	public String toString() {
 		return "Goals [id=" + id + ", name=" + name + ", description=" + description + ", imagePath=" + imagePath
-				+ ", targetDate=" + targetDate + ", targerAmount=" + targerAmount + ", currentAmount=" + currentAmount
+				+ ", targetDate=" + targetDate + ", targetAmount=" + targetAmount + ", currentAmount=" + currentAmount
 				+ "]";
 	}
 	
