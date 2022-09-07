@@ -35,6 +35,9 @@ public class Goal {
 	
 	@Column(name = "current_amount")
 	private Integer currentAmount;
+	
+	@Column(name = "status")
+	private String status;
 
 	public Integer getId() {
 		return id;
@@ -91,13 +94,22 @@ public class Goal {
 	public void setCurrentAmount(Integer currentAmount) {
 		this.currentAmount = currentAmount;
 	}
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public Goal() {
 		super();
 	}
 
 	public Goal(String name, String description, String imagePath, LocalDate targetDate, Integer targetAmount,
-			Integer currentAmount) {
+			Integer currentAmount, String status) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -105,12 +117,13 @@ public class Goal {
 		this.targetDate = targetDate;
 		this.targetAmount = targetAmount;
 		this.currentAmount = currentAmount;
+		this.status = status;
 	}
 	
 	
 
 	public Goal(Integer id, String name, String description, String imagePath, LocalDate targetDate,
-			Integer targetAmount, Integer currentAmount) {
+			Integer targetAmount, Integer currentAmount, String status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -119,14 +132,17 @@ public class Goal {
 		this.targetDate = targetDate;
 		this.targetAmount = targetAmount;
 		this.currentAmount = currentAmount;
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Goals [id=" + id + ", name=" + name + ", description=" + description + ", imagePath=" + imagePath
+		return "Goal [id=" + id + ", name=" + name + ", description=" + description + ", imagePath=" + imagePath
 				+ ", targetDate=" + targetDate + ", targetAmount=" + targetAmount + ", currentAmount=" + currentAmount
-				+ "]";
+				+ ", status=" + status + "]";
 	}
+
+	
 	
 	
 }
